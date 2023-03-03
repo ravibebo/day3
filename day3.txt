@@ -1,0 +1,145 @@
+Q1:Write a program containing a possible exception. Use a try block to throw it and a catch block
+to handle it promptly.
+public class day3 {
+
+	public static void main(String args[]) {
+		int arr[]= {1,2,3,4,5,6};
+//		System.out.println(arr[100]);	
+		try {
+//			
+			System.out.println(arr[1000]);
+				
+		}
+		catch(Exception  e) {
+			System.out.println(e);
+		}
+		finally {
+			System.out.println("yess");
+		}
+		System.out.println("ravi");
+
+	}
+}
+output: java.lang.ArrayIndexOutOfBoundsException: Index 1000 out of bounds for length 6
+yess
+ravi
+
+Q2: Write a program that illustrates the application of multiple catch statements.
+public class day3 {
+
+	public static void main(String args[]) {
+		try {
+		      int array[] = new int[10];
+//		      int ans =array[100];
+		      array[10] = 30 / 0;
+		}
+		catch (ArithmeticException | ArrayIndexOutOfBoundsException  e) {
+		      System.out.println(e.getMessage());
+		}
+		catch (Exception e) {
+				System.out.println("hello");
+		}
+
+	}
+}
+Outut: / by zero
+
+Q3:Write a program that demonstrates how certain exception types are not allowed to be thrown
+
+
+public class day3 extends Exception {
+		public day3 (String m) {
+			super(m);
+		}
+		public static int custom(int a,int b) throws Exception {
+			if(a==b) {
+				throw new day3 ("custom exception: not allowed");
+			}
+			else {
+				return a+b;
+			}
+//			return a-b;
+		}
+		public static void main(String[] args) throws Throwable {
+			
+			try {  
+		    	int ans = custom (10,10);
+			//int ans = custom (10,30);
+		    	System.out.println(ans);
+		    }catch(Exception e) {
+		    	System.out.print(e);
+		    }
+		}	
+}
+
+output1:day3: custom exception: not allowed
+output2:40
+
+
+Q4:Write a program to demonstrate the concept of re-throwing an exception
+public class day3 {
+	
+		public static void test1() throws Exception {
+		      System.out.println("The Exception in test1() method");
+		      throw new Exception("thrown from test1() method");
+		}
+		public static void test2() throws Throwable {
+			try {
+		         test1();
+			}
+			catch(Exception e) {
+		         System.out.println("Inside test2() method");
+		         throw e;
+		      }
+		   }
+		public static void main(String[] args) throws Throwable {
+		      try {
+		         test2();
+		      } catch(Exception e) {
+		    	  System.out.println("Caught in main");
+		      }
+		}
+
+	
+}
+output:
+The Exception in test1() method
+Inside test2() method
+Caught in main
+
+
+Q5:You will be given two integers and as input, you have to compute x/y. If x and y are not 32 bit
+signed integers or if y is zero, exception will occur and you have to report it. Read sample
+Input/Output to know what to report in case of exceptions. 
+import java.util.*;
+public class day3 {
+		public static void main(String[] args) throws Throwable {
+		      Scanner sc= new Scanner(System.in);
+		      int a,b;
+		      a= sc.nextInt();
+		      b= sc.nextInt();
+		      try {
+		    	int c= a/b;
+		    	System.out.print(c);
+		    	
+		      }
+		      catch(Exception e){
+		    	  System.out.print(e);
+		      }
+		      
+		}	
+}
+input: 10 3
+outout: 3
+input: 
+10
+hello
+outout: 
+Exception in thread "main" java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at day3.main(day3.java:7)
+
+
